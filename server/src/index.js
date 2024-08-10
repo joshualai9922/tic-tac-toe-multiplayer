@@ -11,8 +11,8 @@ app.use(cors());
 app.use(express.json());
 const api_key = process.env.REACT_APP_STREAM_API_KEY;
 const api_secret = process.env.REACT_APP_STREAM_API_SECRET;
-
 const serverClient = StreamChat.getInstance(api_key, api_secret);
+const dbTableName = "tic_tac_toe_multiplayer";
 
 app.post("/signup", async (req, res) => {
   try {
@@ -49,6 +49,22 @@ app.post("/login", async (req, res) => {
     }
   } catch (error) {
     res.json(error);
+  }
+});
+
+// POSTGRESQL DB ROUTE
+app.put("/game/endResult", async (req, res) => {
+  try {
+    const { userUsername, opponentUsername, endResult } = req.body;
+
+    await pool.query(
+      `INSERT INTO ${dbTableName} (user_username, opponent_username, result) VALUES ($1, $2, $3)`,
+      [userUsername, opponentUsername, endResult]
+    );
+
+    res.status(204).end();
+  } catch (err) {
+    console.error(`Error at /game/endResult request: ${err.message}`);
   }
 });
 
