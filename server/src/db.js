@@ -5,10 +5,10 @@ dotenv.config({ path: ".env.local" });
 
 const pool = new Pool({
   user: "postgres",
-  password: process.env.REACT_APP_postgres_password,
+  password: process.env.POSTGRESQL_PASSWORD,
   host: "localhost",
   port: 5432,
-  database: process.env.REACT_APP_postgres_database,
+  database: process.env.POSTGRESQL_DATABASE,
 });
 
 export default pool;

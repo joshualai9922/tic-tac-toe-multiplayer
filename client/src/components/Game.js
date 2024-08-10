@@ -16,17 +16,50 @@ function Game({ channel, setChannel }) {
   });
 
   useEffect(() => {
-    if (result.state === "won") {
-      if (result.winner === player) {
-        //write to db here
-        console.log(cookies.get("username") + " won");
-      } else {
-        console.log(cookies.get("username") + " lose");
+    const writeResultToDb = async (userResult) => {
+      const endResultData = {
+        userUsername: cookies.get("username"),
+        opponentUsername: cookies.get("opponentUsername"),
+        endResult: userResult,
+      };
+
+      try {
+        const response = await fetch("http://localhost:3001/game/endResult", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(endResultData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to send end result data");
+        }
+      } catch (err) {
+        console.error("Error in writeResultToDb:", err.message);
       }
-    } else if (result.state === "tie") {
-      console.log(cookies.get("username") + " tie");
+    };
+
+    if (result.winner != "none") {
+      let userResult;
+      if (result.state === "won") {
+        if (result.winner === player) {
+          userResult = "win";
+        } else {
+          userResult = "lose";
+        }
+      } else if (result.state === "tie") {
+        userResult = "tie";
+      }
+      writeResultToDb(userResult);
     }
   }, [result.winner]);
+
+  const handleLeaveGame = async () => {
+    await channel.stopWatching();
+    setChannel(null);
+    setPlayersJoined(false);
+    setResult({ winner: "none", state: "none" });
+    setPlayer("X");
+  };
 
   if (!playersJoined) {
     return <div> Waiting for other player to join...</div>;
@@ -49,10 +82,11 @@ function Game({ channel, setChannel }) {
         <MessageInput noFiles />
       </Window>
       <button
-        onClick={async () => {
-          await channel.stopWatching();
-          setChannel(null);
-        }}
+        onClick={handleLeaveGame}
+        // {async () => {
+        //   await channel.stopWatching();
+        //   setChannel(null);
+        // }}
       >
         {" "}
         Leave Game

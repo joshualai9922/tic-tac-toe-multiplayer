@@ -4,6 +4,7 @@ import { StreamChat } from "stream-chat";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import pool from "./db.js";
 dotenv.config({ path: ".env.local" });
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(express.json());
 const api_key = process.env.REACT_APP_STREAM_API_KEY;
 const api_secret = process.env.REACT_APP_STREAM_API_SECRET;
 const serverClient = StreamChat.getInstance(api_key, api_secret);
-const dbTableName = "tic_tac_toe_multiplayer";
+const dbTableName = process.env.POSTGRESQL_DATABASE;
 
 app.post("/signup", async (req, res) => {
   try {
@@ -53,7 +54,7 @@ app.post("/login", async (req, res) => {
 });
 
 // POSTGRESQL DB ROUTE
-app.put("/game/endResult", async (req, res) => {
+app.post("/game/endResult", async (req, res) => {
   try {
     const { userUsername, opponentUsername, endResult } = req.body;
 

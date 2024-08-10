@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useChatContext, Channel } from "stream-chat-react";
 import Game from "./Game";
 import CustomInput from "./CustomInput";
+import Cookies from "universal-cookie";
 function JoinGame() {
+  const cookies = new Cookies();
   const [rivalUsername, setRivalUsername] = useState("");
   const { client } = useChatContext();
   const [channel, setChannel] = useState(null);
@@ -20,6 +22,7 @@ function JoinGame() {
 
     await newChannel.watch();
     setChannel(newChannel);
+    cookies.set("opponentUsername", rivalUsername, { path: "/" });
   };
   return (
     <>
