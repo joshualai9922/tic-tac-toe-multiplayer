@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "./Board";
 import { Window, MessageList, MessageInput } from "stream-chat-react";
+import Cookies from "universal-cookie";
 import "./Chat.css";
 function Game({ channel, setChannel }) {
   const [playersJoined, setPlayersJoined] = useState(
@@ -8,6 +9,7 @@ function Game({ channel, setChannel }) {
   );
   const [result, setResult] = useState({ winner: "none", state: "none" });
   const [player, setPlayer] = useState("X");
+  const cookies = new Cookies();
 
   channel.on("user.watching.start", (event) => {
     setPlayersJoined(event.watcher_count === 2);
@@ -16,12 +18,13 @@ function Game({ channel, setChannel }) {
   useEffect(() => {
     if (result.state === "won") {
       if (result.winner === player) {
-        console.log("I won");
+        //write to db here
+        console.log(cookies.get("username") + " won");
       } else {
-        console.log("I lose");
+        console.log(cookies.get("username") + " lose");
       }
     } else if (result.state === "tie") {
-      console.log("I tie");
+      console.log(cookies.get("username") + " tie");
     }
   }, [result.winner]);
 
