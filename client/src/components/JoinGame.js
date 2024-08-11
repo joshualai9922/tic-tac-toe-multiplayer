@@ -22,6 +22,8 @@ function JoinGame() {
   const [rivalUsername, setRivalUsername] = useState("");
   const { client } = useChatContext();
   const [channel, setChannel] = useState(null);
+  const [rows, setRows] = useState([]);
+  const [updateDbCount, setUpdateDbCount] = useState(0);
   const createChannel = async () => {
     const response = await client.queryUsers({ name: { $eq: rivalUsername } });
 
@@ -58,17 +60,22 @@ function JoinGame() {
 
   useEffect(() => {
     getHistory();
-  }, []);
+  }, [updateDbCount]);
 
   //DATA LOGIC//
 
   // Modify the result based on the conditions
-  const rows = gameHistory.map((history) => {
-    return {
-      result: history.result,
-      player: history.opponent_username,
-    };
-  });
+
+  useEffect(() => {
+    const updatedGameHistory = gameHistory.map((history) => {
+      return {
+        result: history.result,
+        player: history.opponent_username,
+      };
+    });
+
+    setRows(updatedGameHistory);
+  }, [gameHistory]);
 
   ////for the table/////
   const columns = [
@@ -98,7 +105,12 @@ function JoinGame() {
     <>
       {channel ? (
         <Channel channel={channel} Input={CustomInput}>
-          <Game channel={channel} setChannel={setChannel} />
+          <Game
+            channel={channel}
+            setChannel={setChannel}
+            updateDbCount={updateDbCount}
+            setUpdateDbCount={setUpdateDbCount}
+          />
         </Channel>
       ) : (
         // <div className="joinGame">

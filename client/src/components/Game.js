@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import { styled } from "@mui/system";
 import Button from "@mui/material/Button";
 import "./Chat.css";
-function Game({ channel, setChannel }) {
+function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
   const [playersJoined, setPlayersJoined] = useState(
     channel.state.watcher_count === 2
   );
@@ -46,7 +46,7 @@ function Game({ channel, setChannel }) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(endResultData),
         });
-
+        setUpdateDbCount(updateDbCount + 1);
         if (!response.ok) {
           throw new Error("Failed to send end result data");
         }
