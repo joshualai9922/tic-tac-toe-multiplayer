@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #76a2ff;
+  background-color: rgb(255, 255, 255);
 }
 
 body {
@@ -85,18 +85,48 @@ h4 {
   font-size: 30px;
 }
 
-.joinGame input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 220px;
-  height: 30px;
+.joinGame {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.joinGame button {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 220px;
-  height: 51px;
-  cursor: pointer;
+
+.join-game-input-container {
+  margin-top: 10px;
+}
+
+.tic-tac-toe-drawing {
+  margin-left: 35px;
+  height: 500px;
+  width: auto;
+}
+
+.tic-tac-toe-drawing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-login-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.logout-button {
+  align-self: end;
+  margin-top: 45px;
+  margin-right: 80px;
+}
+
+.logout-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100vw;
+}
+
+.game-history {
+  margin-top: 20px;
 }

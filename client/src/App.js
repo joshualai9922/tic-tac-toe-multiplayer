@@ -6,6 +6,7 @@ import { Chat } from "stream-chat-react";
 import Cookies from "universal-cookie";
 import { useState } from "react";
 import JoinGame from "./components/JoinGame";
+import Button from "@mui/material/Button";
 
 function App() {
   const api_key = process.env.REACT_APP_STREAM_API_KEY;
@@ -43,19 +44,38 @@ function App() {
       });
   }
   return (
-    <div className="App">
+    <>
       {isAuth ? (
-        <Chat client={client}>
-          <JoinGame />
-          <button onClick={logOut}> Log Out</button>
-        </Chat>
+        <div className="post-login-container">
+          <Chat client={client}>
+            <div className="logout-button-container">
+              <Button
+                variant="outlined"
+                color="error"
+                className="logout-button"
+                onClick={logOut}
+                sx={{
+                  alignSelf: "flex-end", // Correct property value
+                  marginTop: "45px", // Correct property value
+                  marginRight: "80px", // Correct property value
+                }}
+              >
+                {" "}
+                Logout
+              </Button>
+            </div>
+            <JoinGame />
+          </Chat>
+        </div>
       ) : (
         <>
-          <SignUp setIsAuth={setIsAuth} />
-          <Login setIsAuth={setIsAuth} />
+          <div className="App">
+            <SignUp setIsAuth={setIsAuth} />
+            <Login setIsAuth={setIsAuth} />
+          </div>
         </>
       )}
-    </div>
+    </>
   );
 }
 

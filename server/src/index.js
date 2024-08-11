@@ -69,6 +69,21 @@ app.post("/game/endResult", async (req, res) => {
   }
 });
 
+app.get("/game/history", async (req, res) => {
+  try {
+    const { userUsername } = req.query;
+    console.log("userUsername", userUsername);
+    const games = await pool.query(
+      `SELECT * FROM ${dbTableName} WHERE user_username = $1`,
+      [userUsername]
+    );
+
+    res.json(games.rows); // Return all rows, not just the first one
+  } catch (err) {
+    console.error(`Error at /game/history request: ${err.message}`);
+  }
+});
+
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
