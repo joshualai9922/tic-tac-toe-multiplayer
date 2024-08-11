@@ -112,6 +112,13 @@ app.get("/game/history", async (req, res) => {
   }
 });
 
-app.listen(3001, () => {
-  console.log("Server is running on port 3001");
+// for local
+// app.listen(3001, () => {
+//   console.log("Server is running on port 3001");
+// });
+
+// this is for deployment on railway
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
