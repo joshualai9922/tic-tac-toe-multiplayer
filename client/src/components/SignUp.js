@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Axios from "axios";
 import Cookies from "universal-cookie";
@@ -20,6 +20,7 @@ function SignUp({ setIsAuth, setGotAcc }) {
   const cookies = new Cookies();
   const [user, setUser] = useState(null);
   const defaultTheme = createTheme();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleLinkClick = () => {
     setGotAcc(true);
@@ -27,22 +28,33 @@ function SignUp({ setIsAuth, setGotAcc }) {
 
   const SignUp = () => {
     Axios.post("http://localhost:3001/signup", user).then((res) => {
-      const { token, userId, firstName, lastName, username, hashedPassword } =
-        res.data;
-      if (token) {
-        cookies.set("token", token);
-        cookies.set("userId", userId);
-        cookies.set("username", username);
-        cookies.set("firstName", firstName);
-        cookies.set("lastName", lastName);
-        cookies.set("hashedPassword", hashedPassword);
-        setIsAuth(true);
-        setGotAcc(true);
+      setErrorMessage(null);
+      if (res.data.status == "fail") {
+        setErrorMessage(res.data.error);
       } else {
-        console.log("sign up failed");
+        const { token, userId, firstName, lastName, username, hashedPassword } =
+          res.data;
+        if (token) {
+          cookies.set("token", token);
+          cookies.set("userId", userId);
+          cookies.set("username", username);
+          cookies.set("firstName", firstName);
+          cookies.set("lastName", lastName);
+          cookies.set("hashedPassword", hashedPassword);
+          setIsAuth(true);
+          setGotAcc(true);
+        } else {
+          console.log("sign up failed");
+        }
       }
     });
   };
+
+  useEffect(() => {
+    if (errorMessage) {
+      alert(errorMessage);
+    }
+  }, [errorMessage]);
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">

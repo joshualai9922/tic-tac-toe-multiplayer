@@ -7,7 +7,6 @@ import dotenv from "dotenv";
 import pool from "./db.js";
 dotenv.config({ path: ".env.local" });
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 const api_key = process.env.REACT_APP_STREAM_API_KEY;
@@ -17,11 +16,35 @@ const dbTableName = process.env.POSTGRESQL_DATABASE;
 
 app.post("/signup", async (req, res) => {
   try {
+    let errorMessage = undefined;
     const { firstName, lastName, username, password } = req.body;
-    const userId = uuidv4();
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const token = serverClient.createToken(userId);
-    res.json({ token, userId, firstName, lastName, username, hashedPassword });
+    const { users } = await serverClient.queryUsers({ name: username });
+    if (!firstName || !lastName || !username || !password) {
+      errorMessage = "Please enter all fields";
+    } else if (password.length < 6) {
+      errorMessage = "Password must be a least 6 characters long";
+    } else if (users.length > 0) {
+      errorMessage = "Account already registered";
+    }
+    if (errorMessage) {
+      res.json({
+        status: "fail",
+        error: errorMessage,
+      });
+    } else {
+      const userId = uuidv4();
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const token = serverClient.createToken(userId);
+      res.json({
+        status: "success",
+        token,
+        userId,
+        firstName,
+        lastName,
+        username,
+        hashedPassword,
+      });
+    }
   } catch (error) {
     res.json(error);
   }
@@ -31,6 +54,7 @@ app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
     const { users } = await serverClient.queryUsers({ name: username });
+
     if (users.length === 0) return res.json({ message: "User not found" });
 
     const token = serverClient.createToken(users[0].id);
@@ -46,6 +70,10 @@ app.post("/login", async (req, res) => {
         lastName: users[0].lastName,
         username,
         userId: users[0].id,
+      });
+    } else {
+      res.json({
+        status: "fail",
       });
     }
   } catch (error) {

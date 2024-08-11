@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Cookies from "universal-cookie";
 
@@ -25,8 +25,10 @@ import {
 function Login({ setIsAuth, setGotAcc }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
   const cookies = new Cookies();
   const login = () => {
+    setErrorMessage(null);
     Axios.post("http://localhost:3001/login", {
       username,
       password,
@@ -41,13 +43,18 @@ function Login({ setIsAuth, setGotAcc }) {
         setIsAuth(true);
         setGotAcc(true);
       } else {
-        console.log("no acc match");
+        setErrorMessage("Username or password incorrect");
       }
     });
   };
   const handleLinkClick = () => {
     setGotAcc(false);
   };
+  useEffect(() => {
+    if (errorMessage) {
+      alert(errorMessage);
+    }
+  }, [errorMessage]);
 
   const defaultTheme = createTheme();
 
