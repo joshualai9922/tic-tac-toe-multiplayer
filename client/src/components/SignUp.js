@@ -27,7 +27,10 @@ function SignUp({ setIsAuth, setGotAcc }) {
   };
 
   const SignUp = () => {
-    Axios.post("http://localhost:3001/signup", user).then((res) => {
+    Axios.post(
+      "https://tic-tac-toe-multiplayer-server-theta.vercel.app/signup",
+      user
+    ).then((res) => {
       setErrorMessage(null);
       if (res.data.status == "fail") {
         setErrorMessage(res.data.error);

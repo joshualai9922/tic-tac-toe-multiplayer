@@ -47,7 +47,7 @@ function JoinGame() {
   const getHistory = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/game/history?userUsername=${encodeURIComponent(
+        `https://tic-tac-toe-multiplayer-server-theta.vercel.app/game/history?userUsername=${encodeURIComponent(
           userUsername
         )}`
       );

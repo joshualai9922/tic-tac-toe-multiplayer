@@ -41,11 +41,14 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
       };
 
       try {
-        const response = await fetch("http://localhost:3001/game/endResult", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(endResultData),
-        });
+        const response = await fetch(
+          "https://tic-tac-toe-multiplayer-server-theta.vercel.app/game/endResult",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(endResultData),
+          }
+        );
         setUpdateDbCount(updateDbCount + 1);
         if (!response.ok) {
           throw new Error("Failed to send end result data");
