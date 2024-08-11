@@ -27,30 +27,35 @@ function SignUp({ setIsAuth, setGotAcc }) {
   };
 
   const SignUp = () => {
-    Axios.post(
-      "https://tic-tac-toe-multiplayer-server-theta.vercel.app/signup",
-      user
-    ).then((res) => {
-      setErrorMessage(null);
-      if (res.data.status == "fail") {
-        setErrorMessage(res.data.error);
-      } else {
-        const { token, userId, firstName, lastName, username, hashedPassword } =
-          res.data;
-        if (token) {
-          cookies.set("token", token);
-          cookies.set("userId", userId);
-          cookies.set("username", username);
-          cookies.set("firstName", firstName);
-          cookies.set("lastName", lastName);
-          cookies.set("hashedPassword", hashedPassword);
-          setIsAuth(true);
-          setGotAcc(true);
+    Axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, user).then(
+      (res) => {
+        setErrorMessage(null);
+        if (res.data.status == "fail") {
+          setErrorMessage(res.data.error);
         } else {
-          console.log("sign up failed");
+          const {
+            token,
+            userId,
+            firstName,
+            lastName,
+            username,
+            hashedPassword,
+          } = res.data;
+          if (token) {
+            cookies.set("token", token);
+            cookies.set("userId", userId);
+            cookies.set("username", username);
+            cookies.set("firstName", firstName);
+            cookies.set("lastName", lastName);
+            cookies.set("hashedPassword", hashedPassword);
+            setIsAuth(true);
+            setGotAcc(true);
+          } else {
+            console.log("sign up failed");
+          }
         }
       }
-    });
+    );
   };
 
   useEffect(() => {

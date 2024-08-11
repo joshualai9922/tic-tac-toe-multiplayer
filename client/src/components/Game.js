@@ -42,7 +42,7 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
 
       try {
         const response = await fetch(
-          "https://tic-tac-toe-multiplayer-server-theta.vercel.app/game/endResult",
+          `${process.env.REACT_APP_BACKEND_URL}/game/endResult`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

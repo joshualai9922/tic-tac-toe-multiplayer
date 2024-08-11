@@ -29,13 +29,10 @@ function Login({ setIsAuth, setGotAcc }) {
   const cookies = new Cookies();
   const login = () => {
     setErrorMessage(null);
-    Axios.post(
-      "https://tic-tac-toe-multiplayer-server-theta.vercel.app/login",
-      {
-        username,
-        password,
-      }
-    ).then((res) => {
+    Axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+      username,
+      password,
+    }).then((res) => {
       const { firstName, lastName, username, token, userId } = res.data;
       if (firstName) {
         cookies.set("token", token);
