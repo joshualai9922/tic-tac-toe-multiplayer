@@ -1,7 +1,8 @@
 import pg from "pg";
 const { Pool } = pg;
 import dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
+// dotenv.config({ path: ".env.local" });
+dotenv.config();
 
 const pool = new Pool({
   user: "postgres",
