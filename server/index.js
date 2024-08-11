@@ -8,7 +8,12 @@ import pool from "./db.js";
 // dotenv.config({ path: ".env.local" });
 dotenv.config();
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: "https://tic-tac-toe-multiplayer-client-three.vercel.app",
+  })
+);
 app.use(express.json());
 const api_key = process.env.REACT_APP_STREAM_API_KEY;
 const api_secret = process.env.REACT_APP_STREAM_API_SECRET;
