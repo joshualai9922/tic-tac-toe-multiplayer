@@ -123,7 +123,7 @@ function JoinGame() {
           <div className="join-game-input-container">
             <TextField
               sx={{
-                width: 500,
+                width: 550,
                 height: 55,
               }}
               id="outlined-basic"
@@ -135,7 +135,7 @@ function JoinGame() {
             />
             <Button
               sx={{
-                width: 150,
+                width: 120,
                 marginLeft: "1px",
                 height: 55,
               }}

@@ -130,3 +130,12 @@ h4 {
 .game-history {
   margin-top: 20px;
 }
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.stream-chat {
+  margin-top: 45px;
+}

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Board from "./Board";
 import { Window, MessageList, MessageInput } from "stream-chat-react";
 import Cookies from "universal-cookie";
+import { styled } from "@mui/system";
+import Button from "@mui/material/Button";
 import "./Chat.css";
 function Game({ channel, setChannel }) {
   const [playersJoined, setPlayersJoined] = useState(
@@ -13,6 +15,21 @@ function Game({ channel, setChannel }) {
 
   channel.on("user.watching.start", (event) => {
     setPlayersJoined(event.watcher_count === 2);
+  });
+
+  const Container = styled("div")({
+    width: "500px",
+    height: "500px",
+    backgroundColor: (theme) => theme.palette.background.default,
+    border: (theme) => `1px solid ${theme.palette.background.paper}`,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   });
 
   useEffect(() => {
@@ -62,7 +79,7 @@ function Game({ channel, setChannel }) {
   };
 
   if (!playersJoined) {
-    return <div> Waiting for other player to join...</div>;
+    return <Container>Waiting for your opponent to join...</Container>;
   }
   return (
     <div className="gameContainer">
@@ -72,16 +89,19 @@ function Game({ channel, setChannel }) {
         player={player}
         setPlayer={setPlayer}
       />
-      <Window>
-        <MessageList
-          disableDateSeparator
-          closeReactionSelectorOnClick
-          hideDeletedMessages
-          messageActions={["react"]}
-        />
-        <MessageInput noFiles />
-      </Window>
-      <button
+      <div className="chat-container">
+        <div className="stream-chat">
+          <Window>
+            <MessageList
+              disableDateSeparator
+              closeReactionSelectorOnClick
+              hideDeletedMessages
+              messageActions={["react"]}
+            />
+            <MessageInput noFiles />
+          </Window>
+        </div>
+        {/* <button
         onClick={handleLeaveGame}
         // {async () => {
         //   await channel.stopWatching();
@@ -90,7 +110,22 @@ function Game({ channel, setChannel }) {
       >
         {" "}
         Leave Game
-      </button>
+      </button> */}
+
+        <Button
+          onClick={handleLeaveGame}
+          variant="contained"
+          sx={{
+            width: 120,
+            marginTop: "2px",
+            marginLeft: "1px",
+            height: 55,
+            alignSelf: "flex-end",
+          }}
+        >
+          Leave Game
+        </Button>
+      </div>
       {result.state === "won" && <div> {result.winner} Won The Game</div>}
       {result.state === "tie" && <div> Game Tieds</div>}
     </div>
