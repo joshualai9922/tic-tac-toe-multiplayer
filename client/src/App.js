@@ -14,6 +14,7 @@ function App() {
   const token = cookies.get("token");
   const client = StreamChat.getInstance(api_key);
   const [isAuth, setIsAuth] = useState(false);
+  const [gotAcc, setGotAcc] = useState(false);
 
   const logOut = () => {
     cookies.remove("token");
@@ -67,13 +68,14 @@ function App() {
             <JoinGame />
           </Chat>
         </div>
+      ) : gotAcc ? (
+        <div className="App">
+          <Login setIsAuth={setIsAuth} setGotAcc={setGotAcc} />
+        </div>
       ) : (
-        <>
-          <div className="App">
-            <SignUp setIsAuth={setIsAuth} />
-            <Login setIsAuth={setIsAuth} />
-          </div>
-        </>
+        <div className="App">
+          <SignUp setIsAuth={setIsAuth} setGotAcc={setGotAcc} />
+        </div>
       )}
     </>
   );

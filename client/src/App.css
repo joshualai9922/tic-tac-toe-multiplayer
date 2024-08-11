@@ -12,7 +12,20 @@ body {
   margin: 0;
 }
 
-.login,
+.link-button {
+  background: none;
+  border: none;
+  color: blue; /* Link color */
+  text-decoration: underline; /* Underline style to mimic link */
+  cursor: pointer;
+  font-weight: bold; /* Bold font */
+}
+
+.link-button:hover {
+  color: red; /* Change color on hover */
+}
+
+/* .login,
 .signUp {
   display: flex;
   flex-direction: column;
@@ -46,7 +59,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   color: white;
-}
+} */
 
 .board {
   width: 500px;
@@ -138,4 +151,10 @@ h4 {
 
 .stream-chat {
   margin-top: 45px;
+}
+
+h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 30px;
 }

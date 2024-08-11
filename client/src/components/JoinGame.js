@@ -56,7 +56,6 @@ function JoinGame() {
     }
   };
 
-  console.log(userUsername);
   useEffect(() => {
     getHistory();
   }, []);

@@ -72,7 +72,6 @@ app.post("/game/endResult", async (req, res) => {
 app.get("/game/history", async (req, res) => {
   try {
     const { userUsername } = req.query;
-    console.log("userUsername", userUsername);
     const games = await pool.query(
       `SELECT * FROM ${dbTableName} WHERE user_username = $1`,
       [userUsername]
