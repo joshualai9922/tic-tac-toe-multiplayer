@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [{ "src": "./", "use": "@vercel/node" }],
-  "routes": [
-    { "src": "/signup", "dest": "/index.js" },
-    { "src": "/login", "dest": "/index.js" },
-    { "src": "/game/endResult", "dest": "/index.js" },
-    { "src": "/game/history", "dest": "/index.js" },
-    { "src": "/(.*)", "dest": "/index.js" }
-  ]
+  "builds": [{ "src": "./index.js", "use": "@vercel/node" }],
+  "routes": [{ "src": "/api/(.*)", "dest": "/index.js" }]
 }
