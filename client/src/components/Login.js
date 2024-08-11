@@ -59,90 +59,93 @@ function Login({ setIsAuth, setGotAcc }) {
   const defaultTheme = createTheme();
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar
-            sx={{ m: 1, bgcolor: "secondary.main" }}
-            aria-label="An image of a lock"
+    <div className="login-container">
+      <img className="signup-title" src="/signupTitle.avif" alt="tictactoe" />
+      <ThemeProvider theme={defaultTheme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 0,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="Username"
-              label="Username"
-              name="Username"
-              inputProps={{
-                "aria-label": "input your username here",
-              }}
-              onChange={(event) => {
-                event.preventDefault();
-                setUsername(event.target.value);
-              }}
-            />
-            <TextField
-              inputProps={{
-                "aria-label": "input your password here",
-              }}
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={(e) => {
-                e.preventDefault();
-                login();
-              }}
+            {/* <Avatar
+              sx={{ m: 1, bgcolor: "secondary.main" }}
+              aria-label="An image of a lock"
             >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs></Grid>
-              <Grid item>
-                <Button
-                  onClick={handleLinkClick}
-                  className="link-button"
-                  variant="text"
-                >
-                  Don't have an account? Sign Up
-                </Button>
+              <LockOutlinedIcon />
+            </Avatar> */}
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <Box component="form" noValidate sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="Username"
+                label="Username"
+                name="Username"
+                inputProps={{
+                  "aria-label": "input your username here",
+                }}
+                onChange={(event) => {
+                  event.preventDefault();
+                  setUsername(event.target.value);
+                }}
+              />
+              <TextField
+                inputProps={{
+                  "aria-label": "input your password here",
+                }}
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  login();
+                }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs></Grid>
+                <Grid item>
+                  <Button
+                    onClick={handleLinkClick}
+                    className="link-button"
+                    variant="text"
+                  >
+                    Don't have an account? Sign Up
+                  </Button>
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 }
 export default Login;

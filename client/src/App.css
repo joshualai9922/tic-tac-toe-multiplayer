@@ -110,8 +110,7 @@ h4 {
 }
 
 .tic-tac-toe-drawing {
-  margin-left: 35px;
-  height: 500px;
+  height: 300px;
   width: auto;
 }
 
@@ -157,4 +156,16 @@ h4 {
   font-family: Arial, Helvetica, sans-serif;
   color: white;
   font-size: 30px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-title {
+  margin-top: 30px;
+  height: 350px;
+  width: 350px;
 }
