@@ -23,7 +23,7 @@ Get ready for some head-to-head fun with this interactive Tic-Tac-Toe game! Chal
 ### How to play via live url
 
 - https://tic-tac-toe-multiplayer-game-client.vercel.app   
-(Note: if playing on 1 machine, open in 2 tabs, 1 incognito and 1 non incognito as login authentication uses cookies)
+(Note: if playing on 1 machine, open in 2 tabs, 1 incognito and 1 non-incognito as login authentication uses cookies)
 
 ### How to play locally
 
