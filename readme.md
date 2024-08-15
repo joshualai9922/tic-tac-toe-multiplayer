@@ -27,7 +27,7 @@ Get ready for some head-to-head fun with this interactive Tic-Tac-Toe game! Chal
 **To play locally:**
 
 - Head to `server/db.js` and change the configuration to connect local Db (see comments in `server/db.js`)
-- Execute ``server/db.js` to create the database table
+- Execute `server/db.js` to create the database table
 - Create a `.env` file for the client & server folders with the following keys
 
   ```
