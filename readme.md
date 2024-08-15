@@ -41,10 +41,11 @@ Note: if playing on 1 machine, open in 2 tabs, 1 incognito and 1 non incognito a
   POSTGRESQL_PORT
   ```
 
-- Run `npm start` for in both client & server folders:
+- Install dependencies via `npm install` then run `npm start` in both client & server folders:
 
   ```
   cd client
+  npm install
   npm start
   ```
 
@@ -52,6 +53,7 @@ Note: if playing on 1 machine, open in 2 tabs, 1 incognito and 1 non incognito a
 
   ```
   cd server
+  npm install
   npm start
   ```
 
