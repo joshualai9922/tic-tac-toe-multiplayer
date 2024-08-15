@@ -85,6 +85,7 @@ app.post("/login", async (req, res) => {
 // POSTGRESQL DB ROUTE
 app.post("/game/endResult", async (req, res) => {
   try {
+    console.log("josh server side API executed: /game/endResult");
     const { userUsername, opponentUsername, endResult } = req.body;
 
     await pool.query(
