@@ -8,12 +8,13 @@ import pool from "./db.js";
 // dotenv.config({ path: ".env.local" });
 dotenv.config();
 const app = express();
-app.use(
-  cors({
-    origin:
-      "https://tic-tac-toe-multiplayer-client-git-main-joshualai9922s-projects.vercel.app",
-  })
-);
+
+// Use CORS middleware for all routes
+app.use(cors());
+
+// Handle OPTIONS requests for all routes
+app.options("*", cors()); // Or specify specific routes if needed
+
 app.use(express.json());
 const api_key = process.env.REACT_APP_STREAM_API_KEY;
 const api_secret = process.env.REACT_APP_STREAM_API_SECRET;
