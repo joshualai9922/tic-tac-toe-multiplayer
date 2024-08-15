@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import pool from "./db.js";
-// dotenv.config({ path: ".env.local" });
 dotenv.config();
 const app = express();
 
@@ -19,7 +18,7 @@ app.use(express.json());
 const api_key = process.env.REACT_APP_STREAM_API_KEY;
 const api_secret = process.env.REACT_APP_STREAM_API_SECRET;
 const serverClient = StreamChat.getInstance(api_key, api_secret);
-const dbTableName = process.env.POSTGRESQL_DATABASE;
+const dbTableName = process.env.POSTGRESQL_TABLE_NAME;
 
 app.post("/signup", async (req, res) => {
   try {

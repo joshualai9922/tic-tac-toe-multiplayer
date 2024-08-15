@@ -20,15 +20,39 @@ Get ready for some head-to-head fun with this interactive Tic-Tac-Toe game! Chal
 
 ## Getting Started:
 
-**To play via hosted url:**
+**To play via live url:**
 
 - https://tic-tac-toe-multiplayer-game-client.vercel.app
 
 **To play locally:**
 
-- change the vercel urls to localhost
-- change the dotenv.config to env.local path
-- change back the db.js
-- change the PORT for index.js in server
+- Head to `server/db.js` and change the configuration to connect local Db (see comments in `server/db.js`)
+- Execute ``server/db.js` to create the database table
+- Create a `.env` file for the client & server folders with the following keys
 
-- note: server .env has all the env variables for backend hosted in railway
+  ```
+  REACT_APP_STREAM_API_SECRET
+  REACT_APP_STREAM_API_KEY
+  REACT_APP_BACKEND_URL
+  POSTGRESQL_PASSWORD
+  POSTGRESQL_USER
+  POSTGRESQL_HOST
+  POSTGRESQL_PORT
+  ```
+
+- Run `npm start` for in both client & server folders:
+
+  ```
+  cd client
+  npm start
+  ```
+
+  In another terminal, run
+
+  ```
+  cd server
+  npm start
+  ```
+
+- Go to localhost:3000 in 2 browser tabs (1 incognito, 1 non-incognito because login authentication uses cookies)
+- Have fun!

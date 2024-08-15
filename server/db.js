@@ -1,28 +1,20 @@
 import pg from "pg";
 const { Pool } = pg;
 import dotenv from "dotenv";
-// dotenv.config({ path: ".env.local" });
 dotenv.config();
 
-// this is for local
+// for running locally
 // const pool = new Pool({
-//   user: "postgres",
+//   user: process.env.POSTGRESQL_USER,
 //   password: process.env.POSTGRESQL_PASSWORD,
-//   host: "localhost",
-//   port: 5432,
-//   database: process.env.POSTGRESQL_DATABASE,
+//   host: process.env.POSTGRESQL_HOST,
+//   port: process.env.POSTGRESQL_PORT,
+//   database: process.env.POSTGRESQL_TABLE_NAME,
 // });
 
+// for live hosted url
 const pool = new Pool({
-  user: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  host: process.env.PGHOST,
-  port: process.env.PGPORT,
-  database: process.env.PGDATABASE,
+  connectionString: process.env.DATABASE_PUBLIC_URL,
 });
-
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_PUBLIC_URL,
-// });
 
 export default pool;
