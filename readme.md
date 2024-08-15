@@ -20,12 +20,12 @@ Get ready for some head-to-head fun with this interactive Tic-Tac-Toe game! Chal
 
 ## Getting Started
 
-### To play via live url
+### How to play via live url
 
 - https://tic-tac-toe-multiplayer-game-client.vercel.app   
 Note: if playing on 1 machine, open in 2 tabs, 1 incognito and 1 non incognito as login auth uses cookies)
 
-### To play locally
+### How to play locally
 
 - Head to `server/db.js` and change the configuration to connect local Db (see comments in `server/db.js`)
 - Execute `server/db.js` to create the database table
