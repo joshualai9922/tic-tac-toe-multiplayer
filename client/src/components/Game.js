@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 import { styled } from "@mui/system";
 import Button from "@mui/material/Button";
 import "./Chat.css";
+import CircularProgress from "@mui/material/CircularProgress";
 function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
   const [playersJoined, setPlayersJoined] = useState(
     channel.state.watcher_count === 2
@@ -82,7 +83,12 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
   };
 
   if (!playersJoined) {
-    return <Container>Waiting for your opponent to join...</Container>;
+    return (
+      <Container>
+        <CircularProgress />
+        Waiting for your opponent to join
+      </Container>
+    );
   }
   return (
     <div className="gameContainer">
