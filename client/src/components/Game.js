@@ -127,16 +127,6 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
             <MessageInput noFiles />
           </Window>
         </div>
-        {/* <button
-        onClick={handleLeaveGame}
-        // {async () => {
-        //   await channel.stopWatching();
-        //   setChannel(null);
-        // }}
-      >
-        {" "}
-        Leave Game
-      </button> */}
 
         <Button
           onClick={handleLeaveGame}

@@ -32,6 +32,9 @@ body {
   border: 1px solid black;
   display: flex;
   flex-direction: column;
+  border-color: #f9f8f8;
+  box-shadow: 0 20px 24px -4px rgba(16, 24, 40, 0.1),
+    0 8px 8px -4px rgba(16, 24, 40, 0.04);
 }
 
 .row {
@@ -114,7 +117,7 @@ h4 {
 }
 
 .stream-chat {
-  margin-top: 45px;
+  margin-top: 60px;
 }
 
 h4 {
