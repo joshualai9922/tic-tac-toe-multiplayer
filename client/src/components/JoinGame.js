@@ -83,7 +83,7 @@ function JoinGame() {
 
   ////for the table/////
   const columns = [
-    { id: "player", label: "Opponent Name", minWidth: 170 },
+    { id: "player", label: "Opponent Username", minWidth: 170 },
 
     {
       id: "result",
