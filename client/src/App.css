@@ -178,3 +178,11 @@ h4 {
 .margin-bottom-0 {
   margin-bottom: 0px;
 }
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.loading-words {
+  margin-left: 15px;
+}

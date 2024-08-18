@@ -84,9 +84,9 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
 
   if (!playersJoined) {
     return (
-      <Container>
+      <Container className="flex-direction-row">
         <CircularProgress />
-        Waiting for your opponent to join
+        <h3 className="loading-words">Waiting for your opponent to join </h3>
       </Container>
     );
   }
