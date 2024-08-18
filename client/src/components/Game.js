@@ -58,7 +58,7 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
       }
     };
 
-    if (result.winner != "none") {
+    if (result.state != "none") {
       let userResult;
       if (result.state === "won") {
         if (result.winner === player) {
@@ -71,7 +71,7 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
       }
       writeResultToDb(userResult);
     }
-  }, [result.winner]);
+  }, [result.state]);
 
   const handleLeaveGame = async () => {
     await channel.stopWatching();
@@ -130,7 +130,7 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
         </Button>
       </div>
       {result.state === "won" && <div> {result.winner} Won The Game</div>}
-      {result.state === "tie" && <div> Game Tieds</div>}
+      {result.state === "tie" && <div> Game Tie</div>}
     </div>
   );
 }
