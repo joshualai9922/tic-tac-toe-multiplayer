@@ -81,6 +81,21 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
     setResult({ winner: "none", state: "none" });
     setPlayer("X");
   };
+  const renderResultMessage = () => {
+    if (result.state === "won") {
+      const message =
+        result.winner === player ? "You won the game!" : "You lost the game!";
+      const className =
+        result.winner === player
+          ? "green-background-color"
+          : "red-background-color";
+      return { message, className };
+    } else if (result.state === "tie") {
+      return { message: "Game Tie", className: "yellow-background-color" };
+    }
+    return null;
+  };
+  const resultData = renderResultMessage();
 
   if (!playersJoined) {
     return (
@@ -108,48 +123,47 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
     );
   }
   return (
-    <div className="gameContainer">
-      <Board
-        result={result}
-        setResult={setResult}
-        player={player}
-        setPlayer={setPlayer}
-      />
-      <div className="chat-container">
-        <div className="stream-chat">
-          <Window>
-            <MessageList
-              disableDateSeparator
-              closeReactionSelectorOnClick
-              hideDeletedMessages
-              messageActions={["react"]}
-            />
-            <MessageInput noFiles />
-          </Window>
-        </div>
-
-        <Button
-          onClick={handleLeaveGame}
-          variant="contained"
-          sx={{
-            width: 120,
-            marginTop: "2px",
-            marginLeft: "1px",
-            height: 55,
-            alignSelf: "flex-end",
-          }}
-        >
-          Leave Game
-        </Button>
-      </div>
-      {result.state === "won" && (
-        <div>
-          {result.winner === player
-            ? "You won the game!"
-            : "You lost the game!"}
+    <div className="game-container">
+      {resultData && (
+        <div className={`result-container ${resultData.className}`}>
+          <h3>{resultData.message}</h3>
         </div>
       )}
-      {result.state === "tie" && <div> Game Tie</div>}
+      <div className="board-and-chat-container">
+        <Board
+          result={result}
+          setResult={setResult}
+          player={player}
+          setPlayer={setPlayer}
+        />
+        <div className="chat-container">
+          <div className="stream-chat">
+            <Window>
+              <MessageList
+                disableDateSeparator
+                closeReactionSelectorOnClick
+                hideDeletedMessages
+                messageActions={["react"]}
+              />
+              <MessageInput noFiles />
+            </Window>
+          </div>
+
+          <Button
+            onClick={handleLeaveGame}
+            variant="contained"
+            sx={{
+              width: 120,
+              marginTop: "2px",
+              marginLeft: "1px",
+              height: 55,
+              alignSelf: "flex-end",
+            }}
+          >
+            Leave Game
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
