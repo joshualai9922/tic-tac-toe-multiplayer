@@ -97,6 +97,11 @@ app.post("/game/endResult", async (req, res) => {
       [userUsername, opponentUsername, endResult]
     );
 
+    console.log(
+      "josh sent to db { userUsername, opponentUsername, endResult }",
+      userUsername + "," + opponentUsername + "," + endResult
+    );
+
     res.status(204).end();
   } catch (err) {
     console.error(`Error at /game/endResult request: ${err.message}`);
