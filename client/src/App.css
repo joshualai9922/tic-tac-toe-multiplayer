@@ -169,3 +169,8 @@ h4 {
   height: 350px;
   width: 350px;
 }
+
+.game-history-title {
+  margin: 30px;
+  border: 1px;
+}
