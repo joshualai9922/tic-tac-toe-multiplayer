@@ -25,42 +25,6 @@ body {
   color: red; /* Change color on hover */
 }
 
-/* .login,
-.signUp {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-}
-
-.login input,
-.signUp input {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 300px;
-  height: 30px;
-}
-
-.login button,
-.signUp button {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 320px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.login label,
-.signUp label {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  color: white;
-} */
-
 .board {
   width: 500px;
   height: 500px;
@@ -177,4 +141,30 @@ h4 {
 
 .margin-bottom-0 {
   margin-bottom: 0px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+  border: 2px solid black;
+  width: 400px;
+  padding: 40px 30px 30px 30px;
+  border-radius: 30px;
+  box-shadow: 0 20px 24px -4px rgba(16, 24, 40, 0.1),
+    0 8px 8px -4px rgba(16, 24, 40, 0.04);
+  border-color: #f9f8f8;
+}
+
+.horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+.loading-leave-container {
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  place-content: flex-end;
 }

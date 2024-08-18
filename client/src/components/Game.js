@@ -84,10 +84,27 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
 
   if (!playersJoined) {
     return (
-      <Container>
-        <CircularProgress />
-        <h3>Waiting for your opponent to join </h3>
-      </Container>
+      <div className="horizontal-center">
+        <div className="loading-container">
+          <CircularProgress />
+          <h3>Waiting for your opponent to join... </h3>
+          <div className="loading-leave-container">
+            <Button
+              onClick={handleLeaveGame}
+              variant="contained"
+              sx={{
+                width: 80,
+                marginTop: "2px",
+                marginLeft: "1px",
+                height: 40,
+                alignSelf: "flex-end",
+              }}
+            >
+              Leave
+            </Button>
+          </div>
+        </div>
+      </div>
     );
   }
   return (
