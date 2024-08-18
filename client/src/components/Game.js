@@ -129,7 +129,13 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
           Leave Game
         </Button>
       </div>
-      {result.state === "won" && <div> {result.winner} Won The Game</div>}
+      {result.state === "won" && (
+        <div>
+          {result.winner === player
+            ? "You won the game!"
+            : "You lost the game!"}
+        </div>
+      )}
       {result.state === "tie" && <div> Game Tie</div>}
     </div>
   );
