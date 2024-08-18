@@ -71,6 +71,7 @@ h4 {
 
 .join-game-input-container {
   margin-top: 10px;
+  display: flex;
 }
 
 .tic-tac-toe-drawing {
