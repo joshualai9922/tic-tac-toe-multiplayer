@@ -91,7 +91,7 @@ function Game({ channel, setChannel, updateDbCount, setUpdateDbCount }) {
           : "red-background-color";
       return { message, className };
     } else if (result.state === "tie") {
-      return { message: "Game Tie", className: "yellow-background-color" };
+      return { message: "Game Tie!", className: "yellow-background-color" };
     }
     return null;
   };
