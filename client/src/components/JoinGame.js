@@ -158,7 +158,7 @@ function JoinGame() {
             </Button>{" "}
           </div>
           <div className="game-history-title">
-            <h3>Game History</h3>
+            <h3 className="margin-bottom-0">Game History</h3>
           </div>
           <div className="game-history">
             <Fragment>
